@@ -47,7 +47,6 @@ public class Calculo {
                 System.out.printf("%6.2f ", d);
             }
             System.out.println();
-//System.out.printf("%2f", price);
         }
 
         return price;

@@ -16,7 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     Conta conta;
     int i = 0;
-    DecimalFormat formato = new DecimalFormat("#,##0.##");
+    DecimalFormat formato = new DecimalFormat("#,###,###,##0.##");
 
     /**
      * Creates new form TelaPrincipal

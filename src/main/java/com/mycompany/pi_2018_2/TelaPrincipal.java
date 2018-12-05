@@ -5,6 +5,7 @@
  */
 package com.mycompany.pi_2018_2;
 
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     Conta conta;
     int i = 0;
+    DecimalFormat formato = new DecimalFormat("#.##");
 
     /**
      * Creates new form TelaPrincipal
@@ -66,7 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel8.setText("Numero de parcelas:");
 
-        tabelaPrice.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        tabelaPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabelaPrice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -85,6 +87,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tabelaPrice);
 
+        tabelaSac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabelaSac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -340,9 +343,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         i = 0;
         for (Double item : priceSimulado.getSi()) {
-            modeloTable.addRow(new Object[]{item, 
-                priceSimulado.getJuros().get(i), priceSimulado.getAmort().get(i), 
-                priceSimulado.getPmt().get(i), priceSimulado.getSf().get(i)});
+            modeloTable.addRow(new Object[]{formato.format(item), 
+                formato.format(priceSimulado.getJuros().get(i)), 
+                formato.format(priceSimulado.getAmort().get(i)), 
+                formato.format(priceSimulado.getPmt().get(i)), 
+                formato.format(priceSimulado.getSf().get(i))});
             i++;
         }
         i = 0;
@@ -359,9 +364,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         i = 0;
         for (Double item : sacSimulado.getSi()) {
-            modeloTable.addRow(new Object[]{item, 
-                sacSimulado.getJuros().get(i), sacSimulado.getAmort().get(i), 
-                sacSimulado.getPmt().get(i), sacSimulado.getSf().get(i)});
+            modeloTable.addRow(new Object[]{formato.format(item), 
+                formato.format(sacSimulado.getJuros().get(i)), 
+                formato.format(sacSimulado.getAmort().get(i)), 
+                formato.format(sacSimulado.getPmt().get(i)), 
+                formato.format(sacSimulado.getSf().get(i))});
             i++;
         }
         i = 0;

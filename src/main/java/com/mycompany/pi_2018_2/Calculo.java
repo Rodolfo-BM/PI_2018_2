@@ -62,6 +62,34 @@ public class Calculo {
         return price;
     }
 
+    public Tabela tabelaPrice(double emprestimo, int parcelas, double taxa) {
+        Tabela price = new Tabela();
+        price.setTipo("price");
+
+        price.setPv(emprestimo);
+        price.setN(parcelas);
+        price.setI(taxa/100);
+        
+        //Calculo PMT
+        pmt = pv * ((i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1));
+
+        //Calculo por linha
+        sf = pv;
+        for (int j = n; j > 0; j--) {
+            si = sf;
+            juros = si * i;
+            amort = pmt - juros;
+            sf = si - amort;
+            
+            price.getSi().add(si);
+            price.getSi().add(juros);
+            price.getSi().add(amort);
+            price.getSi().add(pmt);
+            price.getSi().add(sf);
+        }
+        return price;
+    }
+    
     //Metodo SAC
     public ArrayList<Double> Sac() {
         System.out.println("SAC");
@@ -97,6 +125,35 @@ public class Calculo {
             }
             System.out.println();
         }
+        return sac;
+    }
+    
+    public Tabela tabelaSac(double emprestimo, int parcelas, double taxa) {
+        Tabela sac = new Tabela();
+        sac.setTipo("sac");
+        
+        sac.setPv(emprestimo);
+        sac.setN(parcelas);
+        sac.setI(taxa);
+
+        //Calculo da Amortização
+        amort = pv / n;
+
+        //Calculo por Linha
+        sf = pv;
+        for (int j = n; j > 0; j--) {
+            si = sf;
+            juros = si * i;
+            pmt = juros + amort;
+            sf = si - amort;
+            
+            sac.getSi().add(si);
+            sac.getJuros().add(juros);
+            sac.getAmort().add(amort);
+            sac.getPmt().add(pmt);
+            sac.getSf().add(sf);
+        }
+        
         return sac;
     }
 }

@@ -39,6 +39,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         botaoPrice.setEnabled(false);
         botaoSac.setEnabled(false);
         
+//        buscar tabela1 e tabela2
+        
     }
     
     /**

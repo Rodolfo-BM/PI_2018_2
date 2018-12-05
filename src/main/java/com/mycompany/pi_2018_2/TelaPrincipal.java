@@ -20,7 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Tabela priceSimulado;
     Tabela sacSimulado;
     int i = 0;
-    DecimalFormat formato = new DecimalFormat("#,###,###,##0.##");
+    DecimalFormat formato = new DecimalFormat("0.##");
 
     /**
      * Creates new form TelaPrincipal
@@ -35,6 +35,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         
         jTextField1.setText(conta.getRenda());
+        
+        botaoPrice.setEnabled(false);
+        botaoSac.setEnabled(false);
         
     }
     
@@ -73,6 +76,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tabela2 = new javax.swing.JTable();
         jScrollPane10 = new javax.swing.JScrollPane();
         tabela1 = new javax.swing.JTable();
+        tituloTabela1 = new javax.swing.JLabel();
+        tituloTabela2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -273,24 +278,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(tabela1);
 
+        tituloTabela1.setText("tituloTabela1");
+
+        tituloTabela2.setText("tituloTabela2");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tituloTabela1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tituloTabela2)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tituloTabela2)
+                    .addComponent(tituloTabela1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -450,6 +467,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tabela2;
     private javax.swing.JTable tabelaPrice;
     private javax.swing.JTable tabelaSac;
+    private javax.swing.JLabel tituloTabela1;
+    private javax.swing.JLabel tituloTabela2;
     // End of variables declaration//GEN-END:variables
 
     private void preencherPriceSimulado(Tabela priceSimulado) {
@@ -492,6 +511,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         i = 0;
     }
+    
+    private void preencherTabela1(Tabela tabela){
+        
+        if (tabela.getTipo().equalsIgnoreCase("price")) {
+            tituloTabela1.setText("Price");
+        }else{
+            tituloTabela1.setText("SAC");
+        }
+        
+        DefaultTableModel modeloTable = (DefaultTableModel) tabela1.getModel();
+
+        while (modeloTable.getRowCount() > 0) {
+            modeloTable.removeRow(0);
+        }
+        
+        i = 0;
+        for (Double item : tabela.getSi()) {
+            modeloTable.addRow(new Object[]{formato.format(item), 
+                formato.format(tabela.getJuros().get(i)), 
+                formato.format(tabela.getAmort().get(i)), 
+                formato.format(tabela.getPmt().get(i)), 
+                formato.format(tabela.getSf().get(i))});
+            i++;
+        }
+        i = 0;
+    }
+    
+    private void preencherTabela2(Tabela tabela){
+        
+        if (tabela.getTipo().equalsIgnoreCase("price")) {
+            tituloTabela2.setText("Price");
+        }else{
+            tituloTabela2.setText("SAC");
+        }
+        
+        DefaultTableModel modeloTable = (DefaultTableModel) tabela2.getModel();
+
+        while (modeloTable.getRowCount() > 0) {
+            modeloTable.removeRow(0);
+        }
+        
+        i = 0;
+        for (Double item : tabela.getSi()) {
+            modeloTable.addRow(new Object[]{formato.format(item), 
+                formato.format(tabela.getJuros().get(i)), 
+                formato.format(tabela.getAmort().get(i)), 
+                formato.format(tabela.getPmt().get(i)), 
+                formato.format(tabela.getSf().get(i))});
+            i++;
+        }
+        i = 0;
+    }
 
     private void apagarComponentes() {
         
@@ -508,6 +579,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         while (modeloTable.getRowCount() > 0) {
             modeloTable.removeRow(0);
         }
+        
+        botaoPrice.setEnabled(false);
+        botaoSac.setEnabled(false);
         
         jTextField3.setText("");
         jTextField4.setText("");

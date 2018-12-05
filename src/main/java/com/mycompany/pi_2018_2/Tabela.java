@@ -13,33 +13,27 @@ import java.util.ArrayList;
  */
 public class Tabela {
 
-    Conta cona;
+    Conta conta;
     String tipo;
     
     double pv;
     int n;
     double i;
     
-    ArrayList<Double> si;
-    ArrayList<Double> juros;
-    ArrayList<Double> amort;
-    ArrayList<Double> pmt;
-    ArrayList<Double> sf;
+    ArrayList<Double> si = new ArrayList<>();
+    ArrayList<Double> juros = new ArrayList<>();
+    ArrayList<Double> amort = new ArrayList<>();
+    ArrayList<Double> pmt = new ArrayList<>();
+    ArrayList<Double> sf = new ArrayList<>();
 
     public Tabela() {
-        
-//        si = new ArrayList<>();
-//        juros = new ArrayList<>();
-//        amort = new ArrayList<>();
-//        pmt = new ArrayList<>();
-//        sf = new ArrayList<>();
         
     }
 
     public Tabela(Conta cona, String tipo, double pv, int n, double i, 
             ArrayList<Double> si, ArrayList<Double> juros, ArrayList<Double> amort,
             ArrayList<Double> pmt, ArrayList<Double> sf) {
-        this.cona = cona;
+        this.conta = cona;
         this.tipo = tipo;
         this.pv = pv;
         this.n = n;
@@ -52,11 +46,11 @@ public class Tabela {
     }
 
     public Conta getCona() {
-        return cona;
+        return conta;
     }
 
     public void setCona(Conta cona) {
-        this.cona = cona;
+        this.conta = cona;
     }
 
     public String getTipo() {
@@ -133,7 +127,7 @@ public class Tabela {
 
     @Override
     public String toString() {
-        return "Tabela{" + "cona=" + cona + ", tipo=" + tipo + ", pv=" + pv + ", n=" + n + ", i=" + i + ", si=" + si + ", juros=" + juros + ", amort=" + amort + ", pmt=" + pmt + ", sf=" + sf + '}';
+        return "Tabela{" + "conta=" + conta + ", tipo=" + tipo + ", pv=" + pv + ", n=" + n + ", i=" + i + ", si=" + si + ", juros=" + juros + ", amort=" + amort + ", pmt=" + pmt + ", sf=" + sf + '}';
     }
     
     

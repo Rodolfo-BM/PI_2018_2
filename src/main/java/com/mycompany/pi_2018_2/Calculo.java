@@ -67,25 +67,28 @@ public class Calculo {
         price.setTipo("price");
 
         price.setPv(emprestimo);
+        pv = emprestimo;
         price.setN(parcelas);
+        n = parcelas;
         price.setI(taxa/100);
+        i = taxa/100;
         
         //Calculo PMT
         pmt = pv * ((i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1));
 
         //Calculo por linha
         sf = pv;
-        for (int j = n; j > 0; j--) {
+        for (int j = 0; j < n; j++) {
             si = sf;
             juros = si * i;
             amort = pmt - juros;
             sf = si - amort;
             
             price.getSi().add(si);
-            price.getSi().add(juros);
-            price.getSi().add(amort);
-            price.getSi().add(pmt);
-            price.getSi().add(sf);
+            price.getJuros().add(juros);
+            price.getAmort().add(amort);
+            price.getPmt().add(pmt);
+            price.getSf().add(sf);
         }
         return price;
     }
@@ -133,8 +136,11 @@ public class Calculo {
         sac.setTipo("sac");
         
         sac.setPv(emprestimo);
+        pv = emprestimo;
         sac.setN(parcelas);
+        n = parcelas;
         sac.setI(taxa);
+        i = taxa/100;
 
         //Calculo da Amortização
         amort = pv / n;

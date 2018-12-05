@@ -323,7 +323,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         Calculo calculo = new Calculo();
         
-        System.out.println(priceSimulado.toString());
+//        System.out.println(priceSimulado.toString());
         
         priceSimulado = calculo.tabelaPrice(emprestimo, parcelas, 5);
         sacSimulado = calculo.tabelaSac(emprestimo, parcelas, 5);

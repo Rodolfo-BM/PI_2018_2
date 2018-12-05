@@ -45,11 +45,11 @@ public class Tabela {
         this.sf = sf;
     }
 
-    public Conta getCona() {
+    public Conta getConta() {
         return conta;
     }
 
-    public void setCona(Conta cona) {
+    public void setConta(Conta cona) {
         this.conta = cona;
     }
 

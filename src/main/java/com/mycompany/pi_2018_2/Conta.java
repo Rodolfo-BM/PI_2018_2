@@ -11,6 +11,7 @@ package com.mycompany.pi_2018_2;
  */
 class Conta {
     
+    private int id;
     private String cpf;
     private String senha;
     private String renda;
@@ -24,6 +25,14 @@ class Conta {
         this.renda = renda;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getCpf() {
         return cpf;
     }
@@ -50,9 +59,7 @@ class Conta {
 
     @Override
     public String toString() {
-        return "Conta{" + "cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + '}';
+        return "Conta{" + "id=" + id + ", cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + '}';
     }
-    
-    
     
 }

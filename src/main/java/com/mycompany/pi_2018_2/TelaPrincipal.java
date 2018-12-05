@@ -5,6 +5,7 @@
  */
 package com.mycompany.pi_2018_2;
 
+import java.sql.PreparedStatement;
 import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,7 +15,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
+    Banco banco;
     Conta conta;
+    Tabela priceSimulado;
+    Tabela sacSimulado;
     int i = 0;
     DecimalFormat formato = new DecimalFormat("#,###,###,##0.##");
 
@@ -22,12 +26,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
-//        conta = TelaLogin.getConta();
         initComponents();
-        
-//        jTextField1.setText(conta.getRenda());
     }
 
+    public TelaPrincipal(Banco banco, Conta conta) {
+        this.banco = banco;
+        this.conta = conta;
+        initComponents();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,8 +257,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         int parcelas = Integer.parseInt(jTextField4.getText());
         
         Calculo calculo = new Calculo();
-        Tabela priceSimulado = new Tabela();
-        Tabela sacSimulado = new Tabela(); 
         
         System.out.println(priceSimulado.toString());
         
@@ -266,11 +271,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSimularActionPerformed
 
     private void botaoPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPriceActionPerformed
-        // TODO add your handling code here:
+        
+        priceSimulado.setConta(conta);
+        
+        try {
+           String sql = "INSERT INTO tabela VALUES (default, "
+                   + "'"+priceSimulado.getConta()+"', "
+                   + "'"+priceSimulado.getTipo()+"', "
+                   + "'"+priceSimulado.getPv()+"', "
+                   + "'"+priceSimulado.getN()+"', "
+                   + "'"+priceSimulado.getI()+"', "
+                   + "'"+priceSimulado.getSi()+"', "
+                   + "'"+priceSimulado.getJuros()+"', "
+                   + "'"+priceSimulado.getAmort()+"', "
+                   + "'"+priceSimulado.getPmt()+"', "
+                   + "'"+priceSimulado.getSf()+"')";
+           PreparedStatement pstm = banco.getCon().prepareStatement(sql);
+           pstm.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        apagarComponentes();
+        
     }//GEN-LAST:event_botaoPriceActionPerformed
 
     private void botaoSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSacActionPerformed
-        // TODO add your handling code here:
+        
+        sacSimulado.setConta(conta);
+        
+        try {
+           String sql = "INSERT INTO tabela VALUES (default, "
+                   + "'"+sacSimulado.getConta()+"', "
+                   + "'"+sacSimulado.getTipo()+"', "
+                   + "'"+sacSimulado.getPv()+"', "
+                   + "'"+sacSimulado.getN()+"', "
+                   + "'"+sacSimulado.getI()+"', "
+                   + "'"+sacSimulado.getSi()+"', "
+                   + "'"+sacSimulado.getJuros()+"', "
+                   + "'"+sacSimulado.getAmort()+"', "
+                   + "'"+sacSimulado.getPmt()+"', "
+                   + "'"+sacSimulado.getSf()+"')";
+           PreparedStatement pstm = banco.getCon().prepareStatement(sql);
+           pstm.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        apagarComponentes();
+        
     }//GEN-LAST:event_botaoSacActionPerformed
 
     /**
@@ -373,6 +422,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         i = 0;
     }
+
+    private void apagarComponentes() {
         
+        DefaultTableModel modeloTable;
+        
+        modeloTable = (DefaultTableModel) tabelaPrice.getModel();
+
+        while (modeloTable.getRowCount() > 0) {
+            modeloTable.removeRow(0);
+        }
+        
+        modeloTable = (DefaultTableModel) tabelaSac.getModel();
+
+        while (modeloTable.getRowCount() > 0) {
+            modeloTable.removeRow(0);
+        }
+        
+        jTextField3.setText("");
+        jTextField4.setText("");
+        banco = new Banco();
+        conta = new Conta();
+        priceSimulado = new Tabela();
+        sacSimulado = new Tabela();
+        i = 0;
+        
+        
+    }
     
 }

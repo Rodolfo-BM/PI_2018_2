@@ -14,12 +14,12 @@ class Conta {
     private int id;
     private String cpf;
     private String senha;
-    private String renda;
+    private double renda;
 
     public Conta() {
     }
 
-    public Conta(String cpf, String senha, String renda) {
+    public Conta(String cpf, String senha, double renda) {
         this.cpf = cpf;
         this.senha = senha;
         this.renda = renda;
@@ -49,11 +49,11 @@ class Conta {
         this.senha = senha;
     }
 
-    public String getRenda() {
+    public double getRenda() {
         return renda;
     }
 
-    public void setRenda(String renda) {
+    public void setRenda(double renda) {
         this.renda = renda;
     }
 

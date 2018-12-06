@@ -127,7 +127,7 @@ public class TelaCriarConta extends javax.swing.JFrame {
         
         conta.setCpf(jTextField1.getText());
         conta.setSenha(jTextField2.getText());
-        conta.setRenda(jTextField3.getText());
+        conta.setRenda(Double.parseDouble(jTextField3.getText()));
         
         try {
             String sql = "INSERT INTO conta VALUES (default, '"+conta.getCpf()+"', '"+conta.getSenha()+"' , '"+conta.getRenda()+"')";

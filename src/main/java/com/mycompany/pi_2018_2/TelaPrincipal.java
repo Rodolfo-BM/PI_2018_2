@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
-    Banco banco;
-    Conta conta;
+    public static Banco banco;
+    public static Conta conta;
     Tabela priceSimulado;
     Tabela sacSimulado;
     int i = 0;
-    DecimalFormat formato = new DecimalFormat("0.##");
+    DecimalFormat formato = new DecimalFormat("#,###,##0.00");
 
     /**
      * Creates new form TelaPrincipal
@@ -30,11 +30,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public TelaPrincipal(Banco banco, Conta conta) {
+        initComponents();
         this.banco = banco;
         this.conta = conta;
-        initComponents();
         
-        jTextField1.setText(conta.getRenda());
+        jTextField1.setText(""+conta.getRenda());
         
         botaoPrice.setEnabled(false);
         botaoSac.setEnabled(false);
@@ -162,7 +162,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Taxa:");
 
-        jTextField5.setEditable(false);
         jTextField5.setText("5,00 %");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -342,15 +341,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         Calculo calculo = new Calculo();
         
-//        System.out.println(priceSimulado.toString());
-        
         priceSimulado = calculo.tabelaPrice(emprestimo, parcelas, 5);
         sacSimulado = calculo.tabelaSac(emprestimo, parcelas, 5);
         
-        System.out.println(priceSimulado.toString());
-        
         preencherPriceSimulado(priceSimulado);
         preencherSacSimulado(sacSimulado);
+        
+        if (priceSimulado.getPmt().get(0) < conta.getRenda() * 0.3) {
+            botaoPrice.setEnabled(true);
+        }else{
+            botaoPrice.setEnabled(false);
+        }
+        if (sacSimulado.getPmt().get(0) < conta.getRenda() * 0.3) {
+            botaoSac.setEnabled(true);
+        }else{
+            botaoSac.setEnabled(false);
+        }
         
     }//GEN-LAST:event_botaoSimularActionPerformed
 
@@ -360,7 +366,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         try {
            String sql = "INSERT INTO tabela VALUES (default, "
-                   + "'"+priceSimulado.getConta()+"', "
+                   + "'"+priceSimulado.getConta().getId()+"', "
                    + "'"+priceSimulado.getTipo()+"', "
                    + "'"+priceSimulado.getPv()+"', "
                    + "'"+priceSimulado.getN()+"', "
@@ -437,6 +443,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
+                
             }
         });
     }
@@ -457,7 +464,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;

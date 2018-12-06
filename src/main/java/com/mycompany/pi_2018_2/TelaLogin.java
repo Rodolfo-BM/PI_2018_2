@@ -8,8 +8,8 @@ import java.sql.ResultSet;
  */
 public class TelaLogin extends javax.swing.JFrame {
     
-    private Banco banco;
-    private Conta conta;
+    public static Banco banco;
+    public static Conta conta;
 
     /**
      * Creates new form TelaPrincipal
@@ -138,6 +138,8 @@ public class TelaLogin extends javax.swing.JFrame {
             conta.setId(rs.getInt("id"));
             conta.setCpf(rs.getString("cpf"));
             conta.setSenha(rs.getString("senha"));
+            conta.setRenda(rs.getDouble("renda"));
+            this.conta = conta;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,7 +197,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-   
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCriarConta;

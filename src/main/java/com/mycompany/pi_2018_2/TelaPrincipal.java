@@ -364,6 +364,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         priceSimulado.setConta(conta);
         
+        String stringSi = "{" + priceSimulado.getSi().get(0);
+        for (int i = 1; i < priceSimulado.getSi().size(); i++) {
+            stringSi += "," + priceSimulado.getSi().get(i);
+        }
+        stringSi += "}";
+        
+        String stringJuros = "{" + priceSimulado.getJuros().get(0);
+        for (int i = 1; i < priceSimulado.getJuros().size(); i++) {
+            stringJuros += "," + priceSimulado.getJuros().get(i);
+        }
+        stringJuros += "}";
+        
+        String stringAmort = "{" + priceSimulado.getAmort().get(0);
+        for (int i = 1; i < priceSimulado.getAmort().size(); i++) {
+            stringAmort += "," + priceSimulado.getAmort().get(i);
+        }
+        stringAmort += "}";
+        
+        String stringPmt = "{" + priceSimulado.getPmt().get(0);
+        for (int i = 1; i < priceSimulado.getPmt().size(); i++) {
+            stringPmt += "," + priceSimulado.getPmt().get(i);
+        }
+        stringPmt += "}";
+        
+        String stringSf = "{" + priceSimulado.getSf().get(0);
+        for (int i = 1; i < priceSimulado.getSf().size(); i++) {
+            stringSf += "," + priceSimulado.getSf().get(i);
+        }
+        stringSf += "}";
+        
         try {
            String sql = "INSERT INTO tabela VALUES (default, "
                    + "'"+priceSimulado.getConta().getId()+"', "
@@ -371,11 +401,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                    + "'"+priceSimulado.getPv()+"', "
                    + "'"+priceSimulado.getN()+"', "
                    + "'"+priceSimulado.getI()+"', "
-                   + "'"+priceSimulado.getSi()+"', "
-                   + "'"+priceSimulado.getJuros()+"', "
-                   + "'"+priceSimulado.getAmort()+"', "
-                   + "'"+priceSimulado.getPmt()+"', "
-                   + "'"+priceSimulado.getSf()+"')";
+                   + "'"+stringSi+"', "
+                   + "'"+stringJuros+"', "
+                   + "'"+stringAmort+"', "
+                   + "'"+stringPmt+"', "
+                   + "'"+stringSf+"')";
            PreparedStatement pstm = banco.getCon().prepareStatement(sql);
            pstm.execute();
         } catch (Exception e) {
@@ -390,18 +420,49 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         sacSimulado.setConta(conta);
         
+        String stringSi = "{" + sacSimulado.getSi().get(0);
+        for (int i = 1; i < sacSimulado.getSi().size(); i++) {
+            stringSi += "," + sacSimulado.getSi().get(i);
+        }
+        stringSi += "}";
+        
+        String stringJuros = "{" + sacSimulado.getJuros().get(0);
+        for (int i = 1; i < sacSimulado.getJuros().size(); i++) {
+            stringJuros += "," + sacSimulado.getJuros().get(i);
+        }
+        stringJuros += "}";
+        
+        String stringAmort = "{" + sacSimulado.getAmort().get(0);
+        for (int i = 1; i < sacSimulado.getAmort().size(); i++) {
+            stringAmort += "," + sacSimulado.getAmort().get(i);
+        }
+        stringAmort += "}";
+        
+        String stringPmt = "{" + sacSimulado.getPmt().get(0);
+        for (int i = 1; i < sacSimulado.getPmt().size(); i++) {
+            stringPmt += "," + sacSimulado.getPmt().get(i);
+        }
+        stringPmt += "}";
+        
+        String stringSf = "{" + sacSimulado.getSf().get(0);
+        for (int i = 1; i < sacSimulado.getSf().size(); i++) {
+            stringSf += "," + sacSimulado.getSf().get(i);
+        }
+        stringSf += "}";
+        
+        
         try {
            String sql = "INSERT INTO tabela VALUES (default, "
-                   + "'"+sacSimulado.getConta()+"', "
+                   + "'"+sacSimulado.getConta().getId()+"', "
                    + "'"+sacSimulado.getTipo()+"', "
                    + "'"+sacSimulado.getPv()+"', "
                    + "'"+sacSimulado.getN()+"', "
                    + "'"+sacSimulado.getI()+"', "
-                   + "'"+sacSimulado.getSi()+"', "
-                   + "'"+sacSimulado.getJuros()+"', "
-                   + "'"+sacSimulado.getAmort()+"', "
-                   + "'"+sacSimulado.getPmt()+"', "
-                   + "'"+sacSimulado.getSf()+"')";
+                   + "'"+stringSi+"', "
+                   + "'"+stringJuros+"', "
+                   + "'"+stringAmort+"', "
+                   + "'"+stringPmt+"', "
+                   + "'"+stringSf+"')";
            PreparedStatement pstm = banco.getCon().prepareStatement(sql);
            pstm.execute();
         } catch (Exception e) {

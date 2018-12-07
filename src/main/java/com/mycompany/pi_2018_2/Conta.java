@@ -15,14 +15,16 @@ class Conta {
     private String cpf;
     private String senha;
     private double renda;
+    private double divida;
 
     public Conta() {
     }
 
-    public Conta(String cpf, String senha, double renda) {
+    public Conta(String cpf, String senha, double renda, double divida) {
         this.cpf = cpf;
         this.senha = senha;
         this.renda = renda;
+        this.divida = divida;
     }
 
     public int getId() {
@@ -57,9 +59,17 @@ class Conta {
         this.renda = renda;
     }
 
+    public double getDivida() {
+        return divida;
+    }
+
+    public void setDivida(double divida) {
+        this.divida = divida;
+    }
+
     @Override
     public String toString() {
-        return "Conta{" + "id=" + id + ", cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + '}';
+        return "Conta{" + "id=" + id + ", cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + ", divida=" + divida + '}';
     }
     
 }

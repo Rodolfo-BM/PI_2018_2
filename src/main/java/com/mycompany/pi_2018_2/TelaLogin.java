@@ -139,6 +139,7 @@ public class TelaLogin extends javax.swing.JFrame {
             conta.setCpf(rs.getString("cpf"));
             conta.setSenha(rs.getString("senha"));
             conta.setRenda(rs.getDouble("renda"));
+            conta.setDivida(rs.getDouble("divida"));
             this.conta = conta;
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,15 +16,17 @@ class Conta {
     private String senha;
     private double renda;
     private double divida;
+    private String condicao;
 
     public Conta() {
     }
 
-    public Conta(String cpf, String senha, double renda, double divida) {
+    public Conta(String cpf, String senha, double renda, double divida, String condicao) {
         this.cpf = cpf;
         this.senha = senha;
         this.renda = renda;
         this.divida = divida;
+        this.condicao = condicao;
     }
 
     public int getId() {
@@ -67,9 +69,17 @@ class Conta {
         this.divida = divida;
     }
 
+    public String getCondicao() {
+        return condicao;
+    }
+
+    public void setCondicao(String condicao) {
+        this.condicao = condicao;
+    }
+
     @Override
     public String toString() {
-        return "Conta{" + "id=" + id + ", cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + ", divida=" + divida + '}';
+        return "Conta{" + "id=" + id + ", cpf=" + cpf + ", senha=" + senha + ", renda=" + renda + ", divida=" + divida + ", condicao=" + condicao + '}';
     }
     
 }

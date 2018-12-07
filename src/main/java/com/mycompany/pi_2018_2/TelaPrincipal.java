@@ -7,6 +7,7 @@ package com.mycompany.pi_2018_2;
 
 import java.sql.PreparedStatement;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,7 +35,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.banco = banco;
         this.conta = conta;
         
-        jTextField1.setText(""+conta.getRenda());
+        jTextField1.setText(""+formato.format(conta.getRenda()));
+        jTextField2.setText(""+formato.format(conta.getDivida()));
         
         botaoPrice.setEnabled(false);
         botaoSac.setEnabled(false);
@@ -73,13 +75,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tabela2 = new javax.swing.JTable();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        tabela1 = new javax.swing.JTable();
-        tituloTabela1 = new javax.swing.JLabel();
-        tituloTabela2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,7 +164,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Taxa:");
 
-        jTextField5.setText("5,00 %");
+        jLabel3.setText("%");
+
+        jLabel4.setText("Total a pagar:");
+
+        jLabel6.setText("R$");
+
+        jLabel12.setText("Total a pagar:");
+
+        jLabel11.setText("R$");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,21 +191,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField1)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel9)
-                            .addComponent(botaoPrice))
-                        .addGap(319, 319, 319))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                            .addGap(319, 319, 319))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(botaoPrice)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoSac))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(botaoSac)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,7 +253,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(botaoSimular))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -235,84 +265,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botaoPrice)
-                            .addComponent(botaoSac))))
+                            .addComponent(botaoSac)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Simulacao de parcelas", jPanel2);
-
-        tabela2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tabela2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SI", "Juros", "Amortizacao", "PMT", "SF"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(tabela2);
-
-        tabela1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tabela1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SI", "Juros", "Amortizacao", "PMT", "SF"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane10.setViewportView(tabela1);
-
-        tituloTabela1.setText("tituloTabela1");
-
-        tituloTabela2.setText("tituloTabela2");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tituloTabela1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tituloTabela2)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tituloTabela2)
-                    .addComponent(tituloTabela1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("tab2", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -338,21 +301,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         double emprestimo =  Double.parseDouble(jTextField3.getText());
         int parcelas = Integer.parseInt(jTextField4.getText());
+        double taxa = Double.parseDouble(jTextField5.getText()) / 100;
         
         Calculo calculo = new Calculo();
         
-        priceSimulado = calculo.tabelaPrice(emprestimo, parcelas, 5);
-        sacSimulado = calculo.tabelaSac(emprestimo, parcelas, 5);
+        priceSimulado = calculo.tabelaPrice(emprestimo, parcelas, taxa);
+        sacSimulado = calculo.tabelaSac(emprestimo, parcelas, taxa);
         
         preencherPriceSimulado(priceSimulado);
+        jTextField6.setText(formato.format(somaPmt(priceSimulado)));
         preencherSacSimulado(sacSimulado);
+        jTextField7.setText(formato.format(somaPmt(sacSimulado)));
         
-        if (priceSimulado.getPmt().get(0) < conta.getRenda() * 0.3) {
+        if (priceSimulado.getPmt().get(0) < conta.getRenda() * 0.3 - conta.getDivida()) {
             botaoPrice.setEnabled(true);
         }else{
             botaoPrice.setEnabled(false);
         }
-        if (sacSimulado.getPmt().get(0) < conta.getRenda() * 0.3) {
+        if (sacSimulado.getPmt().get(0) < conta.getRenda() * 0.3 - conta.getDivida()) {
             botaoSac.setEnabled(true);
         }else{
             botaoSac.setEnabled(false);
@@ -408,6 +374,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                    + "'"+stringSf+"')";
            PreparedStatement pstm = banco.getCon().prepareStatement(sql);
            pstm.execute();
+           
+           String sql2 = "UPDATE conta SET divida = divida + "+ priceSimulado.getPmt().get(0) +" WHERE cpf = '"+ conta.getCpf()+"'";
+           PreparedStatement pstm2 = banco.getCon().prepareStatement(sql2);
+           pstm2.execute();
+           
+           JOptionPane.showMessageDialog(rootPane, "Emprestimo adicionado com sucesso");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -465,6 +437,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                    + "'"+stringSf+"')";
            PreparedStatement pstm = banco.getCon().prepareStatement(sql);
            pstm.execute();
+           
+           String sql2 = "UPDATE conta SET divida = divida + "+ priceSimulado.getPmt().get(0) +" WHERE cpf = '"+ conta.getCpf()+"'";
+           PreparedStatement pstm2 = banco.getCon().prepareStatement(sql2);
+           pstm2.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -515,29 +491,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoSimular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTable tabela1;
-    private javax.swing.JTable tabela2;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JTable tabelaPrice;
     private javax.swing.JTable tabelaSac;
-    private javax.swing.JLabel tituloTabela1;
-    private javax.swing.JLabel tituloTabela2;
     // End of variables declaration//GEN-END:variables
 
     private void preencherPriceSimulado(Tabela priceSimulado) {
@@ -581,58 +557,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         i = 0;
     }
     
-    private void preencherTabela1(Tabela tabela){
+    private double somaPmt(Tabela tabela){
         
-        if (tabela.getTipo().equalsIgnoreCase("price")) {
-            tituloTabela1.setText("Price");
-        }else{
-            tituloTabela1.setText("SAC");
+        double soma = 0;
+        
+        for (Double item : tabela.getPmt()) {
+            soma += item;
         }
         
-        DefaultTableModel modeloTable = (DefaultTableModel) tabela1.getModel();
-
-        while (modeloTable.getRowCount() > 0) {
-            modeloTable.removeRow(0);
-        }
+        return soma;
         
-        i = 0;
-        for (Double item : tabela.getSi()) {
-            modeloTable.addRow(new Object[]{formato.format(item), 
-                formato.format(tabela.getJuros().get(i)), 
-                formato.format(tabela.getAmort().get(i)), 
-                formato.format(tabela.getPmt().get(i)), 
-                formato.format(tabela.getSf().get(i))});
-            i++;
-        }
-        i = 0;
     }
     
-    private void preencherTabela2(Tabela tabela){
-        
-        if (tabela.getTipo().equalsIgnoreCase("price")) {
-            tituloTabela2.setText("Price");
-        }else{
-            tituloTabela2.setText("SAC");
-        }
-        
-        DefaultTableModel modeloTable = (DefaultTableModel) tabela2.getModel();
-
-        while (modeloTable.getRowCount() > 0) {
-            modeloTable.removeRow(0);
-        }
-        
-        i = 0;
-        for (Double item : tabela.getSi()) {
-            modeloTable.addRow(new Object[]{formato.format(item), 
-                formato.format(tabela.getJuros().get(i)), 
-                formato.format(tabela.getAmort().get(i)), 
-                formato.format(tabela.getPmt().get(i)), 
-                formato.format(tabela.getSf().get(i))});
-            i++;
-        }
-        i = 0;
-    }
-
     private void apagarComponentes() {
         
         DefaultTableModel modeloTable;
@@ -652,6 +588,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         botaoPrice.setEnabled(false);
         botaoSac.setEnabled(false);
         
+        jTextField2.setText(""+formato.format(conta.getDivida()));
         jTextField3.setText("");
         jTextField4.setText("");
         banco = new Banco();

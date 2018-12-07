@@ -6,6 +6,7 @@
 package com.mycompany.pi_2018_2;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -97,11 +98,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SI", "Juros", "Amortizacao", "PMT", "SF"
+                "N", "SI", "Juros", "Amortizacao", "PMT", "SF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,11 +117,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SI", "Juros", "Amortizacao", "PMT", "SF"
+                "N", "SI", "Juros", "Amortizacao", "PMT", "SF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -526,7 +527,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         i = 0;
         for (Double item : priceSimulado.getSi()) {
-            modeloTable.addRow(new Object[]{formato.format(item), 
+            modeloTable.addRow(new Object[]{i+1,
+                formato.format(item), 
                 formato.format(priceSimulado.getJuros().get(i)), 
                 formato.format(priceSimulado.getAmort().get(i)), 
                 formato.format(priceSimulado.getPmt().get(i)), 
@@ -547,7 +549,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         i = 0;
         for (Double item : sacSimulado.getSi()) {
-            modeloTable.addRow(new Object[]{formato.format(item), 
+            modeloTable.addRow(new Object[]{i+1,
+                formato.format(item), 
                 formato.format(sacSimulado.getJuros().get(i)), 
                 formato.format(sacSimulado.getAmort().get(i)), 
                 formato.format(sacSimulado.getPmt().get(i)), 
@@ -588,6 +591,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         botaoPrice.setEnabled(false);
         botaoSac.setEnabled(false);
         
+        this.conta = atualizarConta(this.conta);
         jTextField2.setText(""+formato.format(conta.getDivida()));
         jTextField3.setText("");
         jTextField4.setText("");
@@ -598,6 +602,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         i = 0;
         
         
+    }
+    
+    private Conta atualizarConta(Conta conta){
+        try {
+            ResultSet rs = banco.buscarResultado("select * from conta where cpf = '"+conta.getCpf()+"' and senha = '"+conta.getSenha()+"'");
+            rs.next();
+            
+            conta.setId(rs.getInt("id"));
+            conta.setCpf(rs.getString("cpf"));
+            conta.setSenha(rs.getString("senha"));
+            conta.setRenda(rs.getDouble("renda"));
+            conta.setDivida(rs.getDouble("divida"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+            return conta;
     }
     
 }

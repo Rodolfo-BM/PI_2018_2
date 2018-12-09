@@ -618,6 +618,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTextField2.setText(""+formato.format(conta.getDivida()));
         jTextField3.setText("");
         jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        
         banco = new Banco();
         conta = new Conta();
         priceSimulado = new Tabela();

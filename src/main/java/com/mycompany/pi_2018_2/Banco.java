@@ -42,6 +42,7 @@ public class Banco {
         try {
             Class.forName("org.postgresql.Driver");
             //192.168.47.42
+            //Inserir IP da maquina onde está o Banco de Dados
             con = DriverManager.getConnection("jdbc:postgresql://192.168.1.11/casaBancaria",
                     "postgres", "123456");
             stmt = con.createStatement();

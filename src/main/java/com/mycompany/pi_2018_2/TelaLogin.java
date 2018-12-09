@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  * @author rodol
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     public static Banco banco;
     public static Conta conta;
 
@@ -64,20 +64,17 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(botaoEntrar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 71, Short.MAX_VALUE))
-                            .addComponent(jTextField2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botaoEntrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoCriarConta)))
+                            .addComponent(botaoCriarConta)
+                            .addComponent(jLabel2))
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,25 +113,26 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         String cpf = jTextField1.getText();
         String senha = jTextField2.getText();
-        
+
         banco = new Banco();
-        
+
         try {
             banco.conectar();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         try {
             Conta conta = new Conta();
-            ResultSet rs = banco.buscarResultado("select * from conta where cpf = '"+cpf+"' and senha = '"+senha+"'");
+            ResultSet rs = banco.buscarResultado("select * from conta where cpf = '" + cpf + "' and senha = '" + senha + "'");
             rs.next();
-            
+
             conta.setId(rs.getInt("id"));
             conta.setCpf(rs.getString("cpf"));
             conta.setSenha(rs.getString("senha"));
@@ -144,23 +142,23 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         new TelaPrincipal(banco, conta).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     private void botaoCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarContaActionPerformed
         Banco banco = new Banco();
-        
+
         try {
             banco.conectar();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         new TelaCriarConta(banco).setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_botaoCriarContaActionPerformed
 
     /**
@@ -209,4 +207,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    static class setVisible {
+
+        public setVisible(boolean b) {
+        }
+    }
 }

@@ -41,7 +41,8 @@ public class Banco {
         
         try {
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://192.168.47.42/casaBancaria",
+            //192.168.47.42
+            con = DriverManager.getConnection("jdbc:postgresql://192.168.1.11/casaBancaria",
                     "postgres", "123456");
             stmt = con.createStatement();
         } catch (Exception e) {
